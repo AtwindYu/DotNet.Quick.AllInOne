@@ -145,5 +145,31 @@ namespace xUnit2.Demo.Tests.xUnit.Demo
         #endregion
 
 
+
+        [Fact]
+        public void ShouldBeTrue()
+        {
+            Boolean val = true;
+
+            val.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void ShouldBeFalse()
+        {
+            Boolean val = false;
+
+            val.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void ShouldBeTrueWithMessage()
+        {
+            Boolean val = false;
+
+            Exception exception = Record.Exception(() => val.ShouldBeTrue("should be true"));
+
+            Assert.StartsWith("should be true", exception.Message);
+        }
     }
 }
