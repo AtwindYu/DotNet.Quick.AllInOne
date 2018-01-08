@@ -80,6 +80,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Parallel.Demo\ParallelDemoTest.cs" />
     <Compile Include="RetryFactExample\DelayedMessageBus.cs" />
     <Compile Include="RetryFactExample\RetryFactAttribute.cs" />
     <Compile Include="RetryFactExample\RetryFactDiscoverer.cs" />
