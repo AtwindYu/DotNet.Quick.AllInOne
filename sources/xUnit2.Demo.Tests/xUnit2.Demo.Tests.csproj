@@ -80,6 +80,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="RetryFactExample\DelayedMessageBus.cs" />
+    <Compile Include="RetryFactExample\RetryFactAttribute.cs" />
+    <Compile Include="RetryFactExample\RetryFactDiscoverer.cs" />
+    <Compile Include="RetryFactExample\RetryTestCase.cs" />
+    <Compile Include="RetryFactExample\Samples.cs" />
     <Compile Include="UnitTestParallelism\RunningTestsInParallel.cs" />
     <Compile Include="UnitTestParallelism\SharedContextBetweenTests.cs" />
     <Compile Include="xUnit.Demo\AppFixture.cs" />
@@ -94,7 +99,6 @@
     <Compile Include="xUnit.Demo\DatabaseFixture.cs" />
     <Compile Include="xUnit.Demo\DateComparer.cs" />
     <Compile Include="xUnit.Demo\EqualExample.cs" />
-    <Compile Include="xUnit.Demo\Expert\RetryFactSamples.cs" />
     <Compile Include="xUnit.Demo\MatrixTheoryData.cs" />
     <Compile Include="xUnit.Demo\SharedContext.cs" />
     <Compile Include="xUnit.Demo\SharedContextAppFixture.cs" />
