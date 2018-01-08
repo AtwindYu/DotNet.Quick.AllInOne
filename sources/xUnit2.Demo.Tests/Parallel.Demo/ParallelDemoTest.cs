@@ -279,5 +279,22 @@ namespace xUnit2.Demo.Tests.Parallel.Demo
             ParallelMaxDegree(Environment.ProcessorCount - 1);
         }
 
+        [Fact]
+        public void EnumerableRunTest1()
+        {
+          var list =  Enumerable.Repeat(new User(), 10);
+            _output.WriteLine($"{list.Count()}");
+
+
+
+        }
+
+
+        class User
+        {
+            public int Id { get; set; }
+
+            public string Name { get; set; }
+        }
     }
 }
