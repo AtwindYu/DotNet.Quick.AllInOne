@@ -6,6 +6,7 @@ using Xunit;
 namespace xUnit2.Demo.Tests.NSubstitute.Demo.LessonBase
 {
 
+    //http://www.cnblogs.com/gaochundong/archive/2013/05/21/nsubstitute_get_started.html
 
     public class Lesson01
     {

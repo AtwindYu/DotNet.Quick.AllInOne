@@ -95,6 +95,14 @@
     <Compile Include="NSubstitute.Demo\LessonBase\Lesson02.cs" />
     <Compile Include="NSubstitute.Demo\LessonBase\Lesson03.cs" />
     <Compile Include="NSubstitute.Demo\LessonBase\Lesson06.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson09.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson10.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson11.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson12.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson14.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson15.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson17.cs" />
+    <Compile Include="NSubstitute.Demo\LessonBase\Lesson18.cs" />
     <Compile Include="Parallel.Demo\ParallelDemoTest.cs" />
     <Compile Include="RetryFactExample\DelayedMessageBus.cs" />
     <Compile Include="RetryFactExample\RetryFactAttribute.cs" />
