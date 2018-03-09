@@ -26,7 +26,7 @@ EF.Core改变比较多，和原来的内容有很多不一样的地方。[参考
 > 1. 输入命令：``Update-Database init`` 生成数据库  （不用事先建立数据库，会帮你生成的）
 > 1. 移除一个属性，然后执行 ``add-migration rmovetimestap`` 会生成新的迁移代码。
 > 1. 执行 ``update-database`` 提交至Db库中。
-> 1. 执行``remove-migration thecommitname``来回滚迁移。 
+> 1. 执行``update-database -TargetMigration:SchoolDB-v1``来回滚迁移至SchoolDB-v1 这个版本来。 
 
 #### PS:EF.Core 的数据迁移功能的相关说明
 > 1. 涉及到主键变更的不要使用迁移命令，手动修改吧。 
@@ -59,5 +59,7 @@ EF.Core改变比较多，和原来的内容有很多不一样的地方。[参考
 
 
 
+### 参考地址
+> [http://www.entityframeworktutorial.net/]
 
 
