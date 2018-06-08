@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,6 +10,75 @@ namespace DotNetCore.KnowledgePoint.DemoTests.ExpressionTreeDemos
     public class Lesson1
     {
 
+
+
+
+
+
+        [TestMethod]
+        [Description("表达式树")]
+
+        public void ExpressionTreeDemo1()
+        {
+
+        }
+
+        [TestMethod]
+        [Description("在List<T>中使用Lambda表达式")]
+        public void UseLambadaInListTest()
+        {
+            /*
+             前面简单的介绍了什么是Lambda表达式，下面通过一个例子进一步了解Lambda表达式。
+
+在前面的文章中，我们也提到了一下List<T>的方法，例如FindAll方法，
+参数是Predicate<T>类型的 委托，返回结果是一个筛选后的新列表；
+Foreach方法获取一个Action<T>类型的委托，然后对每个元素设置行为。
+下面就看看在 List<T>中使用Lambda表达式：
+
+             */
+
+            var books = new List<Book>
+            {
+                new Book{Name="C# learning guide",Year=2005},
+                new Book{Name="C# step by step",Year=2005},
+                new Book{Name="Java learning guide",Year=2004},
+                new Book{Name="Java step by step",Year=2004},
+                new Book{Name="Python learning guide",Year=2003},
+                new Book{Name="C# in depth",Year=2012},
+                new Book{Name="Java in depth",Year=2014},
+                new Book{Name="Python in depth",Year=2013},
+            };
+
+            //创建一个委托实例来表示一个通用的操作
+            //Action<Book> printer = book => Console.WriteLine("Name = {0}, Year = {1}", book.Name, book.Year);
+            void printer(Book book) => Console.WriteLine("Name = {0}, Year = {1}", book.Name, book.Year);
+
+            books.ForEach(printer);
+
+            //使用Lambda表达式对List<T>进行筛选
+            books.FindAll(book => book.Year > 2010).ForEach(printer);
+
+            books.FindAll(book => book.Name.Contains("C#")).ForEach(printer);
+
+            //使用Lambda表达式对List<T>进行排序
+            books.Sort((book1, book2) => book1.Name.CompareTo(book2.Name));
+            books.ForEach(printer);
+
+            //Console.Read();
+
+            /*
+             
+             从上面例子可以看到，当我们要经常使用一个操作的时候，我们最好创建一个委托实例，然后反复调用，而不是每次使用的时候都使用Lambda表达式（例如例子中的printer委托实例）。
+
+             */
+
+
+        }
+        public class Book
+        {
+            public string Name { get; set; }
+            public int Year { get; set; }
+        }
 
 
 
