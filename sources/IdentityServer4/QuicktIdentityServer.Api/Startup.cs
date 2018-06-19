@@ -39,7 +39,7 @@ namespace QuicktIdentityServer.Api
                 {
                     options.TokenValidationParameters = new TokenValidationParameters();
                     options.RequireHttpsMetadata = false;
-                    options.Audience = "api1";//api范围
+                    options.Audience = "api11";//api范围
                     options.Authority = "http://localhost:55554";//IdentityServer地址
                 });
         }

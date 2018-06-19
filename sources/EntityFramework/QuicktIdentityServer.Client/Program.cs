@@ -115,5 +115,31 @@ namespace QuicktIdentityServer.Client
              */
         }
 
+
+
+        /*
+         
+         
+         进一步实践
+当前演练目前主要关注的是成功的步骤：
+
+客户端可以请求令牌
+客户端可以使用令牌来访问 API
+
+
+
+你现在可以尝试引发一些错误来学习系统的相关行为，比如：
+
+尝试在 IdentityServer 未运行时（unavailable）连接它
+尝试使用一个非法的客户端id或密码来请求令牌
+尝试在请求令牌的过程中请求一个非法的 scope
+尝试在 API 未运行时(unavailable)调用它
+不向 API 发送令牌
+配置 API 为需要不同于令牌中的 scope ERROR:Unauthorized
+         
+         
+         
+         */
+
     }
 }
