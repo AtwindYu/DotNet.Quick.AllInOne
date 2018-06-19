@@ -42,10 +42,28 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
             //    .AddInMemoryClients(Config.GetClients());
 
 
-            //上面的还是异常，改成下面的
-            services.AddIdentityServer().AddDeveloperSigningCredential()
-                .AddInMemoryClients(Config.GetClients())
-                .AddInMemoryApiResources(Config.GetApiResources());
+            ////上面的还是异常，改成下面的
+            //services.AddIdentityServer().AddDeveloperSigningCredential()
+            //    .AddInMemoryClients(Config.GetClients())
+            //    .AddInMemoryApiResources(Config.GetApiResources());
+
+
+            // 使用内存存储，密钥，客户端和资源来配置身份服务器。
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiResources(Config.GetApiResources())//添加api资源
+                .AddInMemoryClients(Config.GetClients())//添加客户端
+                .AddTestUsers(Config.GetUsers()); //添加测试用户
+
+
+            /*
+             AddTestUsers 方法帮我们做了以下几件事：
+
+为资源所有者密码授权添加支持
+添加对用户相关服务的支持，这服务通常为登录 UI 所使用（我们将在下一个快速入门中用到登录 UI）
+为基于测试用户的身份信息服务添加支持（你将在下一个快速入门中学习更多与之相关的东西）
+             
+             */
 
         }
 
