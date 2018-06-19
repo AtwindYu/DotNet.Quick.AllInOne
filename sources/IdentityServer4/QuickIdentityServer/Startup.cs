@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,9 @@ namespace QuickIdentityServer
 
 AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每次启动时，为令牌签名创建了一个临时密钥。在生成环境需要一个持久化的密钥。详细请点击
              
+
+            当您切换到self-hosting时，Web服务器端口默认为5000.您可以在上面的启动配置文件对话框中配置，也可以在Program.cs中进行配置，我们在quickstart中为IdentityServer Host使用以下配置：
+
              */
 
 
@@ -29,40 +33,64 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
             //IdentityServer使用通常的模式来配置和添加服务到ASP.NET Core Host
             //
             //在ConfigureServices中，所有必须的服务被配置并且添加到依赖注入系统中。
-            
-            services.AddIdentityServer().AddDeveloperSigningCredential();
+
+            //services.AddIdentityServer().AddDeveloperSigningCredential(); //.AddInMemoryClients(InMemoryClientStore);
+
+            //上面的异常，必须改成下面的方式
+
+            //services.AddIdentityServer().AddDeveloperSigningCredential()
+            //    .AddInMemoryClients(Config.GetClients());
+
+
+            //上面的还是异常，改成下面的
+            services.AddIdentityServer().AddDeveloperSigningCredential()
+                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryApiResources(Config.GetApiResources());
+
         }
 
 
 
 
         //在Configure中，中间件被添加到HTTP管道中。
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IHostingEnvironment env)
         {
             loggerFactory.AddConsole(LogLevel.Debug);
-            app.UseDeveloperExceptionPage();
-
-            app.UseIdentityServer();
-        }
 
 
-
-
-
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+
+
+
+
+            app.UseIdentityServer();
+
+
+
         }
+
+
+
+
+
+        //Note:不可以有多个Config方法
+        //// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //{
+
+        //    if (env.IsDevelopment())
+        //    {
+        //        app.UseDeveloperExceptionPage();
+        //    }
+
+        //    app.Run(async (context) =>
+        //    {
+        //        await context.Response.WriteAsync("Hello World!");
+        //    });
+        //}
     }
 }
