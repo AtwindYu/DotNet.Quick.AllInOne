@@ -61,7 +61,7 @@ namespace QuicktIdentityServer.Client
 
             // 调用api
             var client = new HttpClient();
-            client.SetBearerToken(tokenResponse.AccessToken);
+            client.SetBearerToken(tokenResponse.AccessToken); //向API发送令牌
 
             var response = await client.GetAsync("http://localhost:56784/Identity");
             if (!response.IsSuccessStatusCode)
@@ -134,7 +134,7 @@ namespace QuicktIdentityServer.Client
 尝试使用一个非法的客户端id或密码来请求令牌
 尝试在请求令牌的过程中请求一个非法的 scope
 尝试在 API 未运行时(unavailable)调用它
-不向 API 发送令牌
+不向 API 发送令牌   ERROR:Unauthorized
 配置 API 为需要不同于令牌中的 scope ERROR:Unauthorized
          
          
