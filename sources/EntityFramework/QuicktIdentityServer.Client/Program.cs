@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
+using Newtonsoft.Json.Linq;
 
 namespace QuicktIdentityServer.Client
 {
@@ -51,7 +53,66 @@ namespace QuicktIdentityServer.Client
              
              */
 
+            //************ 授权通过了就可以调用API了 *******************
 
+            //最后是调用 API。
+
+            //为了发送访问令牌到 API，你一般要使用 HTTP 授权 header。这可以通过 SetBearerToken 扩展方法来实现：
+
+            // 调用api
+            var client = new HttpClient();
+            client.SetBearerToken(tokenResponse.AccessToken);
+
+            var response = await client.GetAsync("http://localhost:56784/Identity");
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("ERROR:" + response.StatusCode);
+            }
+            else
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(JArray.Parse(content));
+            }
+
+            //注意：默认情况下访问令牌将包含 scope 身份信息，生命周期（nbf 和 exp），客户端 ID（client_id） 和 发行者名称（iss）。
+
+            /*
+             {
+  "access_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJiYTUyOTJkNzg2YTY2Y2JiZTlhNjU2OGQ0OTA5ZDZmIiwidHlwIjoiSldUIn0.eyJuYmYiOjE1MjkzODI1MzAsImV4cCI6MTUyOTM4NjEzMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1NTU1NCIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjU1NTU0L3Jlc291cmNlcyIsImFwaTEiXSwiY2xpZW50X2lkIjoiY2xpZW50Iiwic2NvcGUiOlsiYXBpMSJdfQ.RT_IhEqnKFmR8lC9kXyRezlx7dReEC9bKKEMBzc3ZX50NcntSpYwJCzcD_oktuOJnWoulCeGq9QZ6KoY0p9AKX0zObTkmM80_I9OhbgWxXCAYG4rJGRnjK8WdQrZ-6u1rd7Qs-AEPOhEfecpmv7SWcJ7M14-k1MrsQz4skJQJM5myVa_gD4s_cYFIVanXrUjldR7JcFdDK3zr_SgoKzQIEc9K3EoYyDETrNCvx27PgQXlCJnj8ub5LlzLX-dkQbWWeObM2hHzjsDp6dXkUla030Ej3Dje7UvzRM35Q_z7Q4Qx4780BD7bswcLN5q08EU5KaL8aiOmDGNGDWmFx5ydA",
+  "expires_in": 3600,
+  "token_type": "Bearer"
+}
+[
+  {
+    "type": "nbf",
+    "value": "1529382530"
+  },
+  {
+    "type": "exp",
+    "value": "1529386130"
+  },
+  {
+    "type": "iss",
+    "value": "http://localhost:55554"
+  },
+  {
+    "type": "aud",
+    "value": "http://localhost:55554/resources"
+  },
+  {
+    "type": "aud",
+    "value": "api1"
+  },
+  {
+    "type": "client_id",
+    "value": "client"
+  },
+  {
+    "type": "scope",
+    "value": "api1"
+  }
+]
+             */
         }
 
     }
