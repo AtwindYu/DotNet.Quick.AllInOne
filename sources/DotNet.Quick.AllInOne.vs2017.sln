@@ -25,7 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{47D1A797-667
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.MvcWeb", "Mvc\DotNet.MvcWeb\DotNet.MvcWeb.csproj", "{323729E9-2D67-44AE-9E5D-AFB8F261B88F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.KnowledgePoint.DemoTests", "UnitTest\DotNetCore.KnowledgePoint.DemoTests\DotNetCore.KnowledgePoint.DemoTests.csproj", "{ED00C848-6D6A-4B52-A0BC-CE5DB6188997}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.KnowledgePoint.DemoTests", "UnitTest\DotNetCore.KnowledgePoint.DemoTests\DotNetCore.KnowledgePoint.DemoTests.csproj", "{ED00C848-6D6A-4B52-A0BC-CE5DB6188997}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer4", "IdentityServer4", "{7DE17547-EE2B-459F-8F1E-B554579DEEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIdentityServer", "IdentityServer4\QuickIdentityServer\QuickIdentityServer.csproj", "{E5AFE905-855D-4423-B092-D8A506CB27D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,10 @@ Global
 		{ED00C848-6D6A-4B52-A0BC-CE5DB6188997}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED00C848-6D6A-4B52-A0BC-CE5DB6188997}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED00C848-6D6A-4B52-A0BC-CE5DB6188997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5AFE905-855D-4423-B092-D8A506CB27D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5AFE905-855D-4423-B092-D8A506CB27D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5AFE905-855D-4423-B092-D8A506CB27D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5AFE905-855D-4423-B092-D8A506CB27D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +86,7 @@ Global
 		{520A44C4-2CB8-435D-9A4F-35F38B719897} = {3900B7FF-63BB-4A3E-BA1B-B34F58858B96}
 		{323729E9-2D67-44AE-9E5D-AFB8F261B88F} = {47D1A797-667E-4815-950A-276A160771FE}
 		{ED00C848-6D6A-4B52-A0BC-CE5DB6188997} = {587C622A-C1C7-4F42-A5C5-19025E13A8F6}
+		{E5AFE905-855D-4423-B092-D8A506CB27D9} = {7DE17547-EE2B-459F-8F1E-B554579DEEDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BC0AFC41-E4B8-439D-B9DA-561BC163D798}
