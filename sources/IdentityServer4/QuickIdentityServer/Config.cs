@@ -28,6 +28,7 @@ namespace QuickIdentityServer
         //Defining the InMemory API's
         public static IEnumerable<ApiResource> GetApiResources()
         {
+
             List<ApiResource> apiResources = new List<ApiResource>();
 
             apiResources.Add(new ApiResource("api1", "First API"));
