@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
 using IdentityServer.Core;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -17,14 +18,25 @@ namespace QuickIdentityServer
                 new TestUser
                 {
                     SubjectId = "1",
-                    Username = "alice",
-                    Password = "password"
+                    Username = "joe",
+                    Password = "123"
                 },
                 new TestUser
                 {
                     SubjectId = "2",
                     Username = "bob",
-                    Password = "password"
+                    Password = "123",
+
+                    //如上所述，OpenID Connect中间件默认要求配置 profile scope。 这个scope还包括像名字或网站这样的声明。
+                    //让我们将这些声明添加到用户，以便IdentityServer可以将它们放入身份令牌中：
+                    Claims = new []
+                    {
+                        new Claim("name", "Bob"),
+                        new Claim("website", "https://cszi.com")
+                    }
+                    //下一次您进行身份验证时，你的声明页面现在将显示额外的声明。
+                    //OpenID Connect中间件上的Scope属性是您配置哪些Scope将在身份验证期间发送到IdentityServer。
+                    //值得注意的是，对令牌中身份信息的遍历是一个扩展点 - IProfileService。因为我们正在使用 AddTestUser，所以默认使用的是 TestUserProfileService。你可以检出这里的源代码来查看它的工作原理。
                 }
             };
         }
