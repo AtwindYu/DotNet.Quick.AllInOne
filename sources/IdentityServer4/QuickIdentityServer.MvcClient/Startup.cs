@@ -69,6 +69,11 @@ namespace QuickIdentityServer.MvcClient
                 });
 
 
+            //在开发过程中，您有时可能会看到一个异常，说明令牌无法验证。
+            // 这是因为签名密钥信息是即时创建的，并且只保存在内存中。 
+            //当客户端和IdentityServer不同步时，会发生此异常。 
+            //只需在客户端重复操作，下次元数据已经追上，一切都应该正常工作。
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

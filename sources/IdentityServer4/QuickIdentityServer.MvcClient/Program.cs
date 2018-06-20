@@ -14,6 +14,8 @@ namespace QuickIdentityServer.MvcClient
     {
         public static void Main(string[] args)
         {
+            Console.Title = "Client.MvcApp";
+
             CreateWebHostBuilder(args).Build().Run();
         }
 
