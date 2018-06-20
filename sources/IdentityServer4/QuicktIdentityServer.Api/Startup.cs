@@ -29,20 +29,46 @@ namespace QuicktIdentityServer.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            
-            services.AddMvcCore().AddJsonFormatters();
-            services.AddAuthentication((options) =>
+
+            #region 使用MS的授权方式
+
+            //services.AddMvcCore().AddJsonFormatters();
+            //services.AddAuthentication((options) =>
+            //    {
+            //        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    })
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.TokenValidationParameters = new TokenValidationParameters();
+            //        options.RequireHttpsMetadata = false;
+            //        options.Audience = "api1";//api范围
+            //        options.Authority = App.IdentityHost;//IdentityServer地址
+            //    });
+
+            #endregion
+
+
+            #region 使用 IdentityServer4.AccessTokenValidation 授权方式
+
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
                 {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters();
+                    options.Authority = App.IdentityHost;
                     options.RequireHttpsMetadata = false;
-                    options.Audience = "api1";//api范围
-                    options.Authority = App.IdentityHost;//IdentityServer地址
+
+                    options.ApiName = "api1";
                 });
+
+
+            #endregion
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
