@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuicktIdentityServer.Api", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuicktIdentityServer.Client", "QuicktIdentityServer.Client\QuicktIdentityServer.Client.csproj", "{0FC14F1C-0555-41A8-AFFA-85C5F111218C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Core", "IdentityServer.Core\IdentityServer.Core.csproj", "{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0FC14F1C-0555-41A8-AFFA-85C5F111218C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC14F1C-0555-41A8-AFFA-85C5F111218C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC14F1C-0555-41A8-AFFA-85C5F111218C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

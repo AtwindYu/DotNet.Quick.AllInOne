@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer.Core;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +41,7 @@ namespace QuicktIdentityServer.Api
                     options.TokenValidationParameters = new TokenValidationParameters();
                     options.RequireHttpsMetadata = false;
                     options.Audience = "api1";//api范围
-                    options.Authority = "http://localhost:55554";//IdentityServer地址
+                    options.Authority = App.IdentityHost;//IdentityServer地址
                 });
         }
 

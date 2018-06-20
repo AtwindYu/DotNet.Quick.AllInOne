@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
+using IdentityServer.Core;
 using Newtonsoft.Json.Linq;
 
 namespace QuicktIdentityServer.Client
@@ -9,20 +10,20 @@ namespace QuicktIdentityServer.Client
     public class GrantTypeDemo
     {
 
-        public const string IdentityServerHost = "http://localhost:55554";
+        //public const string IdentityServerHost = "http://localhost:55554";
 
-        public const string APIUri = "http://localhost:56784/Identity";
+        //public const string APIUri = "http://localhost:56784/Identity";
 
 
         #region API CALL
 
-        static async Task CallApi(string accessToken)
+        static async Task CallApi(string accessToken, string apiName = "/Identity")
         {
             // 调用api
             var client = new HttpClient();
             client.SetBearerToken(accessToken); //设定访问Token
 
-            var response = await client.GetAsync(APIUri);
+            var response = await client.GetAsync($"{App.ApiHost}{apiName}");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine("ERROR:" + response.StatusCode);
@@ -51,7 +52,7 @@ namespace QuicktIdentityServer.Client
         {
             //IdentityModel 包含了一个用于 发现端点 的客户端库。这样一来你只需要知道 IdentityServer 的基础地址，实际的端点地址可以从元数据中读取：
             // 从元数据中发现端口
-            var disco = await DiscoveryClient.GetAsync(IdentityServerHost);
+            var disco = await DiscoveryClient.GetAsync(App.IdentityHost);
 
 
             //接着你可以使用 TokenClient 来请求令牌。为了创建一个该类型的实例，你需要传入令牌端点地址、客户端id和密码。
@@ -165,7 +166,7 @@ namespace QuicktIdentityServer.Client
         {
 
             // 从元数据中发现客户端
-            var disco = await DiscoveryClient.GetAsync(IdentityServerHost);
+            var disco = await DiscoveryClient.GetAsync(App.IdentityHost);
 
             // 请求令牌
             var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
