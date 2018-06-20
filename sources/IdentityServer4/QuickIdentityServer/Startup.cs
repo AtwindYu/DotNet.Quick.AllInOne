@@ -103,6 +103,10 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
 
             //app.UseMvc();
             app.UseStaticFiles();
+
+            // Add MVC to the request pipeline.
+            //app.UseMvc();
+
             app.UseMvcWithDefaultRoute();
         }
 

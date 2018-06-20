@@ -21,6 +21,10 @@ namespace QuickIdentityServer
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                //.UseWebRoot("wwwroot")
+                //.UseContentRoot(Directory.GetCurrentDirectory())
+                //.UseContentRoot(contentRoot)  // set content root
+                //.UseWebRoot("wwwroot")          // set web root
                 .UseUrls("http://*:5000") //如果不明确指定的话，会生成两个URL，一个5000的HTTP和一个5001的HTTPS
                 .UseStartup<Startup>();
     }
