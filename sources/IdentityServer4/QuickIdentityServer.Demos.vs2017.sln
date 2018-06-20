@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Core", "Iden
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIdentityServer.MvcClient", "QuickIdentityServer.MvcClient\QuickIdentityServer.MvcClient.csproj", "{068F7BC7-6B0B-4A32-B258-8A78230BB911}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{F7043185-DC11-4FD3-A1D1-94F532AC3A45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0FC14F1C-0555-41A8-AFFA-85C5F111218C} = {F7043185-DC11-4FD3-A1D1-94F532AC3A45}
+		{068F7BC7-6B0B-4A32-B258-8A78230BB911} = {F7043185-DC11-4FD3-A1D1-94F532AC3A45}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BC0AFC41-E4B8-439D-B9DA-561BC163D798}

@@ -14,6 +14,8 @@ namespace QuicktIdentityServer.Api
     {
         public static void Main(string[] args)
         {
+            Console.Title = "ApiServer";
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

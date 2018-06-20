@@ -101,7 +101,7 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
 
             app.UseIdentityServer();
 
-
+            //app.UseMvc();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
