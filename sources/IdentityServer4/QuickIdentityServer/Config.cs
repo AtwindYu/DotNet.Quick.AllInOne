@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using IdentityServer.Core;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
@@ -78,6 +80,29 @@ namespace QuickIdentityServer
 
 
 
+            //最后一步是将MVC客户端的配置添加到IdentityServer。
+            //基于OpenID Connect的客户端与我们迄今添加的OAuth 2.0客户端非常相似。 但是由于OIDC中的流程始终是交互式的，我们需要在配置中添加一些重定向URL。
+            //将以下内容添加到您的客户端配置：
+            clients.Add(// OpenID Connect implicit flow client (MVC)
+                new Client
+                {
+                    ClientId = "mvc",
+                    ClientName = "MVC Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+
+                    // where to redirect to after login
+                    RedirectUris = { $"{App.MvcClientHost}/signin-oidc" },
+
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { $"{App.MvcClientHost}/signout-callback-oidc" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    }
+                });
+
 
 
             return clients;
@@ -94,6 +119,24 @@ namespace QuickIdentityServer
             return apiResources;
         }
 
+
+
+
+
+        //# 添加OpenID Connect Identity Scopes的支持
+        //与OAuth 2.0类似，OpenID Connect也使用Scopes概念。 
+        //再次，Scopes代表您想要保护的客户端希望访问的内容。 
+        //与OAuth相反，OIDC中的范围不代表API，而是代表用户ID，姓名或电子邮件地址等身份信息。
+
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                //所有标准Scopes及其相应的声明都可以在OpenID Connect规范中找到。
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(), 
+            };
+        }
 
 
     }

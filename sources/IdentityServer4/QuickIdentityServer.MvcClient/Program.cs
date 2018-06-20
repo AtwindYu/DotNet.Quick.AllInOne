@@ -19,6 +19,7 @@ namespace QuickIdentityServer.MvcClient
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://*:5020")
                 .UseStartup<Startup>();
     }
 }

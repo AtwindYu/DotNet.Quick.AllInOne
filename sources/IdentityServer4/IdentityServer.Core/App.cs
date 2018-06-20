@@ -15,5 +15,9 @@ namespace IdentityServer.Core
         public const string ApiHost = "http://localhost:5010";
 
 
+
+        public const string MvcClientHost = "http://localhost:5020";
+
+
     }
 }

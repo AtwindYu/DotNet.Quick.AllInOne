@@ -5,3 +5,17 @@
 <h3>@ViewData["Message"]</h3>
 
 <p>Use this area to provide additional information.</p>
+
+
+<dl>
+    @foreach (var claim in User.Claims)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+    }
+</dl>
+
+<!--如果您现在使用浏览器访问HomeController，将会导致重定向到IdentityServer,这将导致错误，因为MVC客户端尚未注册。
+
+下一步就是注册了
+-->
