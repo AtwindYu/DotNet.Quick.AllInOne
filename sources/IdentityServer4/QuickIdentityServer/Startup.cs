@@ -87,6 +87,13 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
                     qqOptions.AppKey = "9bba2145a04d3c3577a2a0074dbcd13d";
                 });
 
+
+            //GOOGle的连接
+            services.AddAuthentication().AddGoogle(ops =>
+            {
+                ops.ClientId = "600952825364-fsik3iakh7a2v20hckjp37c96hbfabag.apps.googleusercontent.com";
+                ops.ClientSecret = "HGMzLdzQEKIay2ipEv4QjQfT";
+            });
         }
 
 
