@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityServer4.Stores;
+using Microsoft.AspNetCore.Authentication.QQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -78,6 +79,13 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
                 .AddInMemoryClients(Config.GetClients())
                 .AddTestUsers(Config.GetUsers());
 
+            //启用QQ连接支持(开启后会自动在登录页面http://localhost:5000/account/login显示出来。)
+            services.AddAuthentication()
+                .AddQQ(qqOptions =>
+                {
+                    qqOptions.AppId = "101425896";
+                    qqOptions.AppKey = "9bba2145a04d3c3577a2a0074dbcd13d";
+                });
 
         }
 

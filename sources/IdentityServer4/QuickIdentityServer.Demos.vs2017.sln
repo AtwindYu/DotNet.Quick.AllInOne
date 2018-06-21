@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuicktIdentityServer.Api", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuicktIdentityServer.Client", "QuicktIdentityServer.Client\QuicktIdentityServer.Client.csproj", "{0FC14F1C-0555-41A8-AFFA-85C5F111218C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Core", "IdentityServer.Core\IdentityServer.Core.csproj", "{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Core", "IdentityServer.Core\IdentityServer.Core.csproj", "{F1C3F032-B2A0-465A-AB1C-E2F1C45423F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIdentityServer.MvcClient", "QuickIdentityServer.MvcClient\QuickIdentityServer.MvcClient.csproj", "{068F7BC7-6B0B-4A32-B258-8A78230BB911}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickIdentityServer.MvcClient", "QuickIdentityServer.MvcClient\QuickIdentityServer.MvcClient.csproj", "{068F7BC7-6B0B-4A32-B258-8A78230BB911}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{F7043185-DC11-4FD3-A1D1-94F532AC3A45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Authentication.QQ", "Microsoft.AspNetCore.Authentication.QQConnect\Microsoft.AspNetCore.Authentication.QQ.csproj", "{7F24999A-AE88-49D7-8A80-03E95F7BABDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{068F7BC7-6B0B-4A32-B258-8A78230BB911}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{068F7BC7-6B0B-4A32-B258-8A78230BB911}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{068F7BC7-6B0B-4A32-B258-8A78230BB911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F24999A-AE88-49D7-8A80-03E95F7BABDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F24999A-AE88-49D7-8A80-03E95F7BABDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F24999A-AE88-49D7-8A80-03E95F7BABDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F24999A-AE88-49D7-8A80-03E95F7BABDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

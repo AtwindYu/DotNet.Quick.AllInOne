@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IdentityServer.Core\IdentityServer.Core.csproj" />
+    <ProjectReference Include="..\Microsoft.AspNetCore.Authentication.QQConnect\Microsoft.AspNetCore.Authentication.QQ.csproj" />
   </ItemGroup>
 
 </Project>
