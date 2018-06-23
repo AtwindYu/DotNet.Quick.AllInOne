@@ -14,6 +14,7 @@
   <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Rbp.Lib" Version="0.3.22" />
   </ItemGroup>
 
   <ItemGroup>

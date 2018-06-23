@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RiseUnity.Extension;
 
 namespace Host.Quickstart.Account
 {
@@ -86,6 +87,7 @@ namespace Host.Quickstart.Account
         {
             // read external identity from the temporary cookie
             var result = await HttpContext.AuthenticateAsync(IdentityServer4.IdentityServerConstants.ExternalCookieAuthenticationScheme);
+            Console.WriteLine("========================================================="+result.ToJsonByJc());
             if (result?.Succeeded != true)
             {
                 throw new Exception("External authentication error");

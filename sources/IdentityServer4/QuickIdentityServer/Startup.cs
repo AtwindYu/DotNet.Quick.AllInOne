@@ -83,8 +83,8 @@ AddDeveloperSigningCredential(1.1为AddTemporarySigningCredential)扩展在每�
             services.AddAuthentication()
                 .AddQQ(qqOptions =>
                 {
-                    qqOptions.AppId = "101479777";
-                    qqOptions.AppKey = "db91508ee722924249bdb6c5f09d3636";
+                    qqOptions.AppId = "101485804";
+                    qqOptions.AppKey = "71a327cdf3929271a1b5260fb2503ea4";
                 });
 
 

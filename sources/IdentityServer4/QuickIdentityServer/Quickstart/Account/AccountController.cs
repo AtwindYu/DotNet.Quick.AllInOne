@@ -17,7 +17,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using RiseUnity.Extension;
 
 namespace IdentityServer4.Quickstart.UI
 {
@@ -352,14 +354,11 @@ namespace IdentityServer4.Quickstart.UI
 
 
 
-        #region QQ跳转 扩展
+        #region QQ跳转 扩展  原来的默认的是有问题的。
 
         /// <summary>
-        /// 跳转的action
+        /// initiate roundtrip to external authentication provider
         /// </summary>
-        /// <param name="provider"></param>
-        /// <param name="returnUrl"></param>
-        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> ExternalLogin(string provider, string returnUrl)
         {
@@ -372,25 +371,68 @@ namespace IdentityServer4.Quickstart.UI
                 }
             };
 
-            // start challenge and roundtrip the return URL
-            props.Items.Add("scheme", provider);
-            return Challenge(props, provider);
+            // windows authentication needs special handling
+            // since they don't support the redirect uri, 
+            // so this URL is re-triggered when we call challenge
+            if (AccountOptions.WindowsAuthenticationSchemeName == provider)
+            {
+                // see if windows auth has already been requested and succeeded
+                var result = await HttpContext.AuthenticateAsync(AccountOptions.WindowsAuthenticationSchemeName);
+                if (result?.Principal is WindowsPrincipal wp)
+                {
+                    props.Items.Add("scheme", AccountOptions.WindowsAuthenticationSchemeName);
+
+                    var id = new ClaimsIdentity(provider);
+                    id.AddClaim(new Claim(JwtClaimTypes.Subject, wp.Identity.Name));
+                    id.AddClaim(new Claim(JwtClaimTypes.Name, wp.Identity.Name));
+
+                    // add the groups as claims -- be careful if the number of groups is too large
+                    if (AccountOptions.IncludeWindowsGroups)
+                    {
+                        var wi = wp.Identity as WindowsIdentity;
+                        var groups = wi.Groups.Translate(typeof(NTAccount));
+                        var roles = groups.Select(x => new Claim(JwtClaimTypes.Role, x.Value));
+                        id.AddClaims(roles);
+                    }
+
+                    await HttpContext.SignInAsync(
+                        IdentityServer4.IdentityServerConstants.ExternalCookieAuthenticationScheme,
+                        new ClaimsPrincipal(id),
+                        props);
+                    return Redirect(props.RedirectUri);
+                }
+                else
+                {
+                    // challenge/trigger windows auth
+                    return Challenge(AccountOptions.WindowsAuthenticationSchemeName);
+                }
+            }
+            else
+            {
+                // start challenge and roundtrip the return URL
+                props.Items.Add("scheme", provider);
+                return Challenge(props, provider);
+            }
         }
 
-
         /// <summary>
-        /// 回调处理成功跳转的Action
+        /// Post processing of external authentication
         /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> ExternalLoginCallback()
         {
             // read external identity from the temporary cookie
             var result = await HttpContext.AuthenticateAsync("QQ");
-
+            //Console.WriteLine("=========================================================" + result.ToJsonByJc());
             if (result?.Succeeded != true)
             {
                 throw new Exception("External authentication error");
+            }
+            else
+            {
+                var obj = (dynamic) result;
+
+                //Console.WriteLine("=========================================================" + obj.ToJsonByJc());
             }
 
             // retrieve claims of the external user
@@ -463,6 +505,7 @@ namespace IdentityServer4.Quickstart.UI
 
             return Redirect("~/");
         }
+
 
 
         #endregion
